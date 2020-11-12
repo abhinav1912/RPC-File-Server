@@ -1,0 +1,26 @@
+{
+    "kdcIP": "127.0.0.1",
+    "kdcPort": 8000,
+    "server_count": 8,
+    "file_count": 0,
+    "nodes": 35,
+    "key": "-----BEGIN PRIVATE KEY-----\nMIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANWrjyUUuyBcaIFE\np9sn0jUB5ZrEITkHRr1i9se2tzfGFgCCWZ1K+OT1LtiaLAP79J5J82LqfSsfTlFX\nXK6TaWiWJ4YQKhHaji5bbiUS/Y//bZy69Bo/0UyZp1sV7PCZVE9iBzNpwEmwPCpW\nO685HfB+r3ycWME/FDHhrS2n3aLJAgMBAAECgYBu4tCvwrl2Ct7lLxcZgenyPmDE\n18ISEXehs2k0rdsZo8ApVXxiR9UxJRjBqgjrrGb/eotHqz94EJAZYIglxTSu8izz\nDJET26eCDvZObY15/8cMNsX52izmY8D0JFjeT9pBbfw+6efIWROO9ZelMrTGK4d/\nHKFBIxxRTplUqejHgQJBAPV2pQl2q8m6WIGm/RcMj3z0aEWdLxP+VeDoAQFyEEzg\nnGxWafx1A6Nc2cxJGgbLPWQYki9cvAIZUYe/nSercHECQQDe14scAExyJ/OUJpKe\nsL9gd1p0tLFJoA/k/Qsz2jNLDiC/E8hKCjsq1oH9be+8Zeq7xGV7uh+gAk1nGlkV\n2gPZAkEAxWb6CKdQNjZPcU07IqsuRf5EUR+8uaaDqBDMpj32D+1evt2r9KSiHWHR\nojFz5dzS7Um5Xq+EX2e/Ip2dpEaCcQJBAMt83f2q1CPmEYo2kuqwEYIAWyx5F+9Y\nZ0s+Oq2V0gL2mraBVQMvRoo+qSMH8cQC+Q+PLvCFrH1LvOyqZbELjTkCQGO0s5+C\nt1ab/K8Tv3ZHR9HjYgzNJeZixGfn2FcgWZlUcyb+x+4O1dYRF6yen/2j7vMQsRND\nAZ8v+lWV9bhJrJY=\n-----END PRIVATE KEY-----\n",
+    "fileservers": [
+        "http://0.0.0.0:38352",
+        "http://0.0.0.0:48301",
+        "http://0.0.0.0:37985",
+        "http://0.0.0.0:41143"
+    ],
+    "addr_directory": {
+        "5": "http://0.0.0.0:38352",
+        "6": "http://0.0.0.0:48301",
+        "7": "http://0.0.0.0:37985",
+        "8": "http://0.0.0.0:41143"
+    },
+    "fileserver_keys": {
+        "5": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDEtqV0YsP3brcRngcAhZ270Wba\nUGaiZJrL23oJMMt2q44MbghUSmVgcgxw4HgawhMh8t8kCPBfAvOR7agKJ5UvCO9w\ncWNXncxugx92KkPTnHJTuq6wWaCO3OJMZUItZwQTNyBG4bXq6/eTeko+uQfW7PoO\nOo5fN2HKEt7qNo6a3QIDAQAB\n-----END PUBLIC KEY-----\n",
+        "6": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDPxmQv3akXyttMRIi6IPZ00zwn\nv1CQNEKMJ+h5A4CuQMNBiIYbHRKau1Hv6RX+FIL9ypsKF28q6w8fnQN4s0Jktp+c\n1h+e3lHIaPgldxfrGlPzJYOdm6r0FzJdhZPidV9yfpM3zTVVRlLHMMnlPUjnj6a3\nCKvks3TwfH7uZGOiXQIDAQAB\n-----END PUBLIC KEY-----\n",
+        "7": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDiZED5O3j9zovEZ6AdPYezlf8C\nqomDs9OKuBPJVlGpcDTyxSiBhUChP3VKbuTFt65Fo7sP5QwiloE1uURedRF/g5PL\nczYXo6/SWIeL8bYJoO5dTQxgyXUBXJUKypdFs/5E8zP8XWd3vV+fwk6yvkq21yUI\nLMWyO+nh4XNcI+/HbwIDAQAB\n-----END PUBLIC KEY-----\n",
+        "8": "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCoeFEwTY+bno5MaahUeLPbeoCN\ntVCiDtjftmoUt5Pps7WTcNpEyfzwB3GQVMk5QadIHoIZuYB2NCjzQT/+aiEPD9X7\n9NGriCa9rpV4QudYY5CLKc4SgfX8MiJLVkqy/8jhO10fOU/nN5aBiRlfPu1VdRBv\nzgB5hGz+EaM8IMcC2wIDAQAB\n-----END PUBLIC KEY-----\n"
+    }
+}

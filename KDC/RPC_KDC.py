@@ -101,18 +101,16 @@ with SimpleXMLRPCServer(server_address) as server:
             # print("WORKS2")
             return [node_count, key_to_send]
         
-        def get_ls(self, curr_dir):
-            curr_dir = decrypt_message(private_key, curr_dir.data).decode()
+        def get_ls(self):
             ls = []
-            if curr_dir == "/root":
-                for i in fileservers:
-                    try:
-                        node = ServerProxy(i)
-                        success = node.test_server(server_address)
-                        ls.append(f"FS{success}")
-                    except Exception as error:
-                        print(str(error))
-                        success = 0
+            for i in fileservers:
+                try:
+                    node = ServerProxy(i)
+                    success = node.test_server(server_address)
+                    ls.append(f"FS{success}")
+                except Exception as error:
+                    print(str(error))
+                    success = 0
             return ls
         
         def is_authenticated(self, node, fileserver):
@@ -123,7 +121,9 @@ with SimpleXMLRPCServer(server_address) as server:
             serv = ServerProxy(addr)
             try:
                 temp_map = {"False":"0", "True":"1"}
-                return temp_map[serv.is_node_authenticated(encrypt_message(temp_key, str.encode(node)))]
+                C = serv.is_node_authenticated(encrypt_message(temp_key, str.encode(node)))
+                print("XXXXX", C)
+                return temp_map[C]
             except:
                 return "Fileserver down, try again later."
         
@@ -134,13 +134,9 @@ with SimpleXMLRPCServer(server_address) as server:
             fileserver_key = fileserver_keys[fileserver]
             fileserver_address = addr_directory[fileserver]
             new_key = create_symmetric_key()
-            m1 = encrypt_message(fileserver_key, new_key)
-            print("fff", temp_key, "CCCCCCCCCCCCC",m1)
-            m2 = encrypt_message(temp_key, m1)
-            print("m2")
             return (
                 encrypt_message(temp_key, new_key),
-                encrypt_message(temp_key, encrypt_message(fileserver_key, new_key)),
+                encrypt_message(fileserver_key, new_key),
                 fileserver_address
             )
 

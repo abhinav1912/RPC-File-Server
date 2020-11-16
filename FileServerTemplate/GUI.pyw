@@ -308,8 +308,8 @@ def task1():
                 return server_number
             
             def is_node_authenticated(self, node):
-                node = decrypt_message(private_key, node.data)
-                return str(node in authenticated)
+                node = decrypt_message(private_key, node.data).decode()
+                return str(str(node) in authenticated)
 
             def authenticate(self, node, temp_key):
                 sess_key = decrypt_message(private_key, temp_key.data)
@@ -317,17 +317,28 @@ def task1():
                 nonce = randint(10**5, 10**6)
                 sess_keys[node] = sess_key
                 nonces[node] = nonce
+                authenticated.append(str(node))
                 return f.encrypt(str.encode(str(nonce)))
             
             def confirm_auth(self, node, nonce):
                 if node not in sess_keys.keys() or node not in nonces.keys():
                     return 0
+                nonce = nonce.data
                 sess_key = sess_keys[node]
                 f = Fernet(sess_key)
                 nonce = int((f.decrypt(nonce)).decode())
                 if nonces[node]-nonce == 1:
                     return 1
                 return 0
+            
+            def get_files(self):
+                pwd = get_parent_path()
+                files = os.listdir(pwd)
+                output = []
+                for i in files:
+                    if ".txt" in i:
+                        output.append(i)
+                return output
 
         server.register_instance(File_Server())
         try:

@@ -81,7 +81,6 @@ def decrypt_message(key, message):
         )
     )
 
-# server_number = (str(pwd).split("/")[-1]).split("FS")[-1]
 pwd = get_parent_path()
 filename = os.path.join(pwd, "log.json")
 with open(filename, 'r') as f:
@@ -119,7 +118,6 @@ def start_server():
 
 
 class ConsoleUi:
-    """Poll messages from a logging queue and display them in a scrolled text widget"""
 
     def __init__(self, frame, queue):
         self.frame = frame
@@ -152,7 +150,6 @@ class ConsoleUi:
             else:
                 record = self.queue[0]
                 del self.queue[0]
-                # self.display(record) 
                 if record.lower() in self.command_list and not self.is_command:
                     self.is_command = 1
                     if record.lower() == "touch":
@@ -169,7 +166,6 @@ class ConsoleUi:
         self.display("Enter number of files to create: ")
         n = self.wait_for_input(int)
         self.display(n)
-        # self.display("User entered "+str(n))
         for i in range(n):
             self.display(f"Creating new file")
             self.display("Do you want to add text (0/1): ")
@@ -198,7 +194,6 @@ class ConsoleUi:
                 x = self.command_queue[0]
                 del self.command_queue[0]
                 temp = typecase(x)
-                # print (x, temp)
                 return temp
             except:
                 self.display("Enter a valid " + str(typecase).split("'")[1], 'RED')
@@ -210,30 +205,17 @@ class FormUi:
     def __init__(self, frame, queue):
         self.frame = frame
         self.queue = queue
-        # Create a combobbox to select the logging level
-        values = ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']
-        self.level = tk.StringVar()
-        ttk.Label(self.frame, text='Level:').grid(column=0, row=0, sticky=W)
-        self.combobox = ttk.Combobox(
-            self.frame,
-            textvariable=self.level,
-            width=25,
-            state='readonly',
-            values=values
-        )
-        self.combobox.current(0)
-        self.combobox.grid(column=1, row=0, sticky=(W, E))
-        # Create a text field to enter a message
+
         self.message = tk.StringVar()
-        ttk.Label(self.frame, text='Message:').grid(column=0, row=1, sticky=W)
+        ttk.Label(self.frame, text='Command:').grid(column=0, row=1, sticky=W)
         self.entry = tk.Entry(self.frame, textvariable=self.message, width=25)
         self.entry.grid(column=1, row=1, sticky=(W, E))
-        # Add a button to log the message
+
         self.button = ttk.Button(self.frame, text='Submit', command=self.submit_message)
         self.button.grid(column=1, row=2, sticky=W)
 
     def submit_message(self):
-        # Get the logging level numeric value
+
         self.queue.append(self.message.get())
         self.entry.delete(0, 'end')
 
@@ -288,13 +270,11 @@ class App:
         signal.signal(signal.SIGINT, self.quit)
 
     def quit(self, *args):
-        # self.clock.stop()
         self.root.destroy()
         os._exit(1)
 
 
 def main():
-    # logging.basicConfig(level=logging.DEBUG)
     root = tk.Tk()
     app = App(root, f'FileServer{server_number} Panel')
     app.root.mainloop()
@@ -309,6 +289,7 @@ def task1():
             
             def is_node_authenticated(self, node):
                 node = decrypt_message(private_key, node.data).decode()
+                prints(f"Authentication check from node{node}")
                 return str(str(node) in authenticated)
 
             def authenticate(self, node, temp_key):
@@ -318,6 +299,7 @@ def task1():
                 sess_keys[node] = sess_key
                 nonces[node] = nonce
                 authenticated.append(str(node))
+                prints(f"Authentication request from node{node}")
                 return f.encrypt(str.encode(str(nonce)))
             
             def confirm_auth(self, node, nonce):
@@ -327,18 +309,54 @@ def task1():
                 sess_key = sess_keys[node]
                 f = Fernet(sess_key)
                 nonce = int((f.decrypt(nonce)).decode())
+                prints(f"Authentication request from node{node}")
                 if nonces[node]-nonce == 1:
                     return 1
                 return 0
             
-            def get_files(self):
+            def get_files(self, node):
                 pwd = get_parent_path()
                 files = os.listdir(pwd)
                 output = []
+                node_key = sess_keys[node]
+                f = Fernet(node_key)
+                prints(f"List of files requested by node{node}")
                 for i in files:
                     if ".txt" in i:
-                        output.append(i)
+                        output.append(f.encrypt(str.encode(i)))
                 return output
+            
+            def get_file_content(self, node, filename):
+                node_key = sess_keys[node]
+                f = Fernet(node_key)
+                pwd = get_parent_path()
+                prints(f"{(f.decrypt(filename.data)).decode()} requested by node{node}")
+                filepath = os.path.join(pwd, (f.decrypt(filename.data)).decode())
+                output = []
+                try:
+                    with open(filepath, "r") as file:
+                        lines = file.readlines()
+                    for i in lines:
+                        output.append(f.encrypt(str.encode(i)))
+                    return output
+                except:
+                    return []
+            
+            def concatenate(self, node, file1, file2):
+                node_key = sess_keys[node]
+                f = Fernet(node_key)
+                pwd = get_parent_path()
+                prints(f"CAT request received from node{node}")
+                try:
+                    filepath1 = os.path.join(pwd, (f.decrypt(file1.data)).decode())
+                    filepath2 = os.path.join(pwd, (f.decrypt(file2.data)).decode())
+                    with open(filepath2, "r") as file:
+                        lines = file.readlines()
+                    with open(filepath1, "a") as file:
+                        file.writelines(lines)
+                    return 1
+                except Exception:
+                    return 0
 
         server.register_instance(File_Server())
         try:
@@ -366,4 +384,3 @@ success = kdc.test_server()
 if not success:
     prints("Connection to server wasn't established.\nExiting now.")
     os.exit(1)
-# create_files()

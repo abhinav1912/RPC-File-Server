@@ -10,6 +10,7 @@ node_keys = {}
 node_address = {}
 node_temp_address = []
 server_key = get_value("key")
+
 if not server_key:
     private_key = get_new_key()
     public_key = private_key.public_key()
@@ -39,16 +40,6 @@ with SimpleXMLRPCServer(server_address) as server:
         def test_reg(self, key):
             print("New Key.")
             return public_key.decode()
-    
-        # def test_reg2(msg, key):
-
-        def adder_function(self, x, y):
-            # x,y = x.data, y.data
-            # x = f.decrypt(x).decode()
-            # y = f.decrypt(y).decode()
-            
-            # return int(x) + int(y)
-            return x+y
 
         def register_server(self, address, key):
             address = tuple(address)
@@ -89,7 +80,6 @@ with SimpleXMLRPCServer(server_address) as server:
             return new_count
 
         def register_node(self, addr, temp_addr, key):
-            
             node_count = get_value("nodes")+1
             node_keys[addr[1]] = convert_bytes_to_public_key(key.data)
             node_temp_address.append(temp_addr)

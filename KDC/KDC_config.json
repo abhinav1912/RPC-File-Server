@@ -7,5 +7,6 @@
     "key": "-----BEGIN PRIVATE KEY-----\nMIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBANWrjyUUuyBcaIFE\np9sn0jUB5ZrEITkHRr1i9se2tzfGFgCCWZ1K+OT1LtiaLAP79J5J82LqfSsfTlFX\nXK6TaWiWJ4YQKhHaji5bbiUS/Y//bZy69Bo/0UyZp1sV7PCZVE9iBzNpwEmwPCpW\nO685HfB+r3ycWME/FDHhrS2n3aLJAgMBAAECgYBu4tCvwrl2Ct7lLxcZgenyPmDE\n18ISEXehs2k0rdsZo8ApVXxiR9UxJRjBqgjrrGb/eotHqz94EJAZYIglxTSu8izz\nDJET26eCDvZObY15/8cMNsX52izmY8D0JFjeT9pBbfw+6efIWROO9ZelMrTGK4d/\nHKFBIxxRTplUqejHgQJBAPV2pQl2q8m6WIGm/RcMj3z0aEWdLxP+VeDoAQFyEEzg\nnGxWafx1A6Nc2cxJGgbLPWQYki9cvAIZUYe/nSercHECQQDe14scAExyJ/OUJpKe\nsL9gd1p0tLFJoA/k/Qsz2jNLDiC/E8hKCjsq1oH9be+8Zeq7xGV7uh+gAk1nGlkV\n2gPZAkEAxWb6CKdQNjZPcU07IqsuRf5EUR+8uaaDqBDMpj32D+1evt2r9KSiHWHR\nojFz5dzS7Um5Xq+EX2e/Ip2dpEaCcQJBAMt83f2q1CPmEYo2kuqwEYIAWyx5F+9Y\nZ0s+Oq2V0gL2mraBVQMvRoo+qSMH8cQC+Q+PLvCFrH1LvOyqZbELjTkCQGO0s5+C\nt1ab/K8Tv3ZHR9HjYgzNJeZixGfn2FcgWZlUcyb+x+4O1dYRF6yen/2j7vMQsRND\nAZ8v+lWV9bhJrJY=\n-----END PRIVATE KEY-----\n",
     "fileservers": [],
     "addr_directory": {},
-    "fileserver_keys": {}
+    "fileserver_keys": {},
+    "users": {}
 }
